@@ -15,10 +15,12 @@ jobs:
 
       - name: Install Dependencies
         run: yarn --no-progress --non-interactive --no-lockfile
+
       - name: Build
         run: yarn build
 
       - uses: jakejarvis/s3-sync-action@master
+        name: Deploy to dev
         with:
           args: --acl public-read --follow-symlinks --delete
         env:

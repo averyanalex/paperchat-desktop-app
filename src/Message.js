@@ -1,7 +1,6 @@
 // Legacy code
 // TODO: full refactor
 
-
 import React from 'react';
 
 class Message extends React.Component {

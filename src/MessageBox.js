@@ -44,7 +44,7 @@ class MessageBox extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (this.state.message.length > 75) {
+    if (this.state.message.length > 150) {
       alert('Сообщение длинное очень');
       return;
     }
@@ -55,7 +55,6 @@ class MessageBox extends React.Component {
 
     let formData = new FormData();
     formData.append("message", this.state.message);
-    formData.append("file", this.state.selectedFile);
     this.setState({ message: '' });
     fetch(url,
     {
@@ -64,17 +63,10 @@ class MessageBox extends React.Component {
     })
   }
 
-  onFileChange = event => {
-
-    // Update the state
-    this.setState({ selectedFile: event.target.files[0] });
-
-  };
-
   render() {
     const { isFetching } = this.state;
     if (isFetching) {
-      return <div>Загрузка...</div>;
+      return <div>Loading...</div>;
     }
     return (
       <div>
@@ -84,18 +76,19 @@ class MessageBox extends React.Component {
         >
           {this.state.messages}
         </div>
-        <form onSubmit={this.handleSubmit} >
-          <label>
-            Сообщение
-            <input
-              id="message"
-              onChange={this.handleChange}
-              value={this.state.message}
-            />
-          </label>
-          <input type="submit" value="Отправить" />
-          <input type="file" onChange={this.onFileChange}/>
-        </form>
+        <div className="sendMessage">
+            <form onSubmit={this.handleSubmit} >
+                <label>
+                    Сообщение
+                    <input
+                    id="message"
+                    onChange={this.handleChange}
+                    value={this.state.message}
+                    />
+                </label>
+                <input type="submit" value="Отправить" />
+            </form>
+        </div>
       </div>
     );
   }

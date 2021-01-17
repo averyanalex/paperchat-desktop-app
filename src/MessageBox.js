@@ -15,7 +15,7 @@ class MessageBox extends React.Component {
   // this.handleChange = this.handleChange.bind(this);
   // this.handleSubmit = this.handleSubmit.bind(this);
   tick() {
-    fetch(process.env.REACT_APP_API_URL + '/get?count=45')
+    fetch(process.env.REACT_APP_API_URL + "/v1/chat/" + this.props.id + '/get?count=45')
       .then((response) => {
         return response.json();
       })
@@ -45,13 +45,13 @@ class MessageBox extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.message.length > 150) {
-      alert('Сообщение длинное очень');
+      alert('Message too large');
       return;
     }
     if (this.state.message.length === 0 && this.state.selectedFile === null) {
       return;
     }
-    const url = process.env.REACT_APP_API_URL + '/send/msg';
+    const url = process.env.REACT_APP_API_URL + "/v1/chat/" + this.props.id + '/send';
 
     let formData = new FormData();
     formData.append("message", this.state.message);

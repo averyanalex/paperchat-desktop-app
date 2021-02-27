@@ -1,6 +1,7 @@
 import { BrowserRouter, Switch, Route, useParams, Redirect } from 'react-router-dom';
 import MessageBox from './MessageBox';
 import './App.css';
+import Panel from './guilds/Panel';
 
 
 function MessageBoxId() {
@@ -19,6 +20,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/chat/:id">
+            <Panel/>
             <MessageBoxId/>
           </Route>
           <Route path="/">
@@ -30,5 +32,4 @@ function App() {
   );
 }
 
-// test
 export default App;

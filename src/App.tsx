@@ -5,7 +5,7 @@ import Panel from './guilds/Panel';
 
 
 function MessageBoxId() {
-  let { id } = useParams();
+  let { id } = useParams<{id: string}>();
   return (
     <div>
       <h1>{id}</h1>
